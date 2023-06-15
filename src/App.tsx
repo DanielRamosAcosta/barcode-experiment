@@ -14,8 +14,21 @@ function decrement(magicNumber: number): number {
   return magicNumber - 1;
 }
 
+/**
+ * Adds 20 minutes to given date. Also, removes the seconds and milliseconds.
+ * @param date
+ */
+function addSomeBufferTimeTo(date: Date) {
+  const newDate = new Date(date);
+  newDate.setMinutes(newDate.getMinutes() + 20);
+  newDate.setSeconds(0);
+  newDate.setMilliseconds(0);
+  return newDate;
+}
+
 export default function App() {
   const [date, setDate] = useState(new Date());
+  const exitDate = addSomeBufferTimeTo(date);
   const [magicNumber, setMagicNumber] = useState(1);
 
   useEffect(() => {
@@ -28,9 +41,9 @@ export default function App() {
   return (
     <>
       <p>SALIDA PARKING</p>
-      <Barcode value={calculateCode(date, Gate.EXIT, magicNumber)} />
+      <Barcode value={calculateCode(exitDate, Gate.EXIT, magicNumber)} />
       <p>
-        Hora límite salida: {getHour(date)}:{getMinutes(date)}
+        Hora límite salida: {getHour(exitDate)}:{getMinutes(exitDate)}
       </p>
       <p>Número mágico: {magicNumber}</p>
       <div className="buttons">
