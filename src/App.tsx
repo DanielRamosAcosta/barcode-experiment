@@ -47,8 +47,8 @@ export default function App() {
       </p>
       <p>Número mágico: {magicNumber}</p>
       <div className="buttons">
-        <button onClick={() => setMagicNumber(increment(magicNumber))}>-</button>
-        <button onClick={() => setMagicNumber(decrement(magicNumber))}>+</button>
+        <button onClick={() => setMagicNumber(decrement(magicNumber))}>-</button>
+        <button onClick={() => setMagicNumber(increment(magicNumber))}>+</button>
       </div>
     </>
   );
