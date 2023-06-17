@@ -1,6 +1,16 @@
-export enum Gate {
+export enum GateValue {
   ENTRANCE = 1,
   EXIT = 9,
+}
+
+export enum Gate {
+  ENTRANCE = "ENTRANCE",
+  EXIT = "EXIT",
+}
+
+const toValue: Record<Gate, GateValue> = {
+  [Gate.ENTRANCE]: GateValue.ENTRANCE,
+  [Gate.EXIT]: GateValue.EXIT,
 }
 
 function getDayOfTheYear(date: Date) {
@@ -21,7 +31,7 @@ function getTimeInSeconds(date: Date) {
 
 export function calculateCode(date: Date, gate: Gate, unknownNumber: number) {
   const constant = "289";
-  const gateValue = gate.toString();
+  const gateValue = toValue[gate];
   const dayOfTheYear = getDayOfTheYear(date);
   const timeInSeconds = getTimeInSeconds(date);
 
