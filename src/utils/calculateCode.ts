@@ -13,12 +13,11 @@ const toValue: Record<Gate, GateValue> = {
   [Gate.EXIT]: GateValue.EXIT,
 }
 
-function getDayOfTheYear(date: Date) {
+function getDaysOfTheYear(date: Date) {
   const start = new Date(date.getFullYear(), 0, 0);
   const diff = date.getTime() - start.getTime();
   const oneDay = 1000 * 60 * 60 * 24;
-  const days = Math.floor(diff / oneDay);
-  return days;
+  return Math.floor(diff / oneDay);
 }
 
 function getTimeInSeconds(date: Date) {
@@ -32,7 +31,7 @@ function getTimeInSeconds(date: Date) {
 export function calculateCode(date: Date, gate: Gate, unknownNumber: number) {
   const constant = "289";
   const gateValue = toValue[gate];
-  const dayOfTheYear = getDayOfTheYear(date);
+  const dayOfTheYear = getDaysOfTheYear(date);
   const timeInSeconds = getTimeInSeconds(date);
 
   return `${constant}${gateValue}${dayOfTheYear}${timeInSeconds}${unknownNumber}`;
